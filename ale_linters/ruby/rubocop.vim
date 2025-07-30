@@ -14,14 +14,25 @@ function! ale_linters#ruby#rubocop#GetCommand(buffer) abort
 endfunction
 
 function! ale_linters#ruby#rubocop#GetType(severity) abort
-    if a:severity is? 'convention'
-    \|| a:severity is? 'warning'
-    \|| a:severity is? 'refactor'
-        return 'W'
-    endif
-
-    return 'E'
+    return get({
+    \   'info': 'I',
+    \   'refactor': 'I',
+    \   'convention': 'I',
+    \   'warning': 'W',
+    \   'error': 'E',
+    \   'fatal': 'E',
+    \ }, a:severity, 'E')
 endfunction
+
+" function! ale_linters#ruby#rubocop#GetType(severity) abort
+"     if a:severity is? 'convention'
+"     \|| a:severity is? 'warning'
+"     \|| a:severity is? 'refactor'
+"         return 'W'
+"     endif
+" 
+"     return 'E'
+" endfunction
 
 call ale#linter#Define('ruby', {
 \   'name': 'rubocop',

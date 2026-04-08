@@ -13,7 +13,7 @@ function! ale#handlers#embertemplatelint#GetCommand(buffer, version) abort
         return '%e --format=json --filename %s'
     endif
 
-    return '%e --json --filename %s'
+    return '%e --format=json --filename %s'
 endfunction
 
 function! ale#handlers#embertemplatelint#GetCommandWithVersionCheck(buffer) abort
